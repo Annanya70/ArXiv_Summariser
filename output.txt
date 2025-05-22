@@ -1,0 +1,445 @@
+Title: Learning to Reason via Mixture-of-Thought for Logical Reasoning
+Authors: Tong Zheng, Lichang Chen, Simeng Han, R. Thomas McCoy, Heng Huang
+Published: 2025-05-21T17:59:54Z
+PDF Link: https://arxiv.org/pdf/2505.15817v1.pdf
+HTML Link: https://arxiv.org/abs/2505.15817v1
+
+Final Summary:
+(self):... def wakes_up(self):... def wakes_up(self):... def wakes_up(self):... def wakes_up(self):... def wakes_up(self):... def wakes_up(self):... def wakes_up(self):... def wakes_up(self):... def wakes_up(self):... def wakes_up(self
+
+Chunk Summaries:
+
+Chunk 1:
+logical reasoning benchmarks: 1) Self-evolving MoT training, which jointly learns from ltered, self-generated rationales across modalities; 2) MoT inference, which fully leverages the synergy of three modalities to produce better predictions. To ll in this gap, we propose Mixture-of-Thought (MoT), a framework that enables LLMs to reason across three complementary modalities: natural language, code, and a
+
+Chunk 2:
+(%) Code Truth Table NL CoT FOLIO ProofWriter 10 30 # Benchmark (a) Uniqueness Ratio Solve Rate (%) Code Truth Table NL CoT FOLIO ProofWriter 70 # Benchmark (b) Coverage Upper-Bound Solve Rate (%) Code [ NL Code [ TT 20 IC MB FM CS : 29 : 20 : 20 : 20 : Percentage (%) (c) Error Distribution of NL mode Er
+
+Chunk 3:
+This cognitive versatility, the ability to represent and process information in diverse formats, is crucial for robust reasoning and generalization. Current LLMs, largely conned to single-modality training and inference, lack this exibility. It raises a critical question: Can LLMs achieve more robust and versatile logical reasoning by explicitly learning to operate across multiple complementary reasoning modalities? We provide illustrative examples in Appendix G.1 combine modalities only during inference and ignore the synerg
+
+Chunk 4:
+- table reasoning, which lists all possibilities, naturally complements this weakness; therefore, we incorporate a symbolic truth-table paradigm. We propose M ixture- o f- T hought (MoT), a human-inspired framework that enables LLMs to reason via three complementary reasoning modalities: natural language reasoning, code reasoning, and symbolic reasoning. Figure 1 shows that 35.8% of ProofWriter items and 16.7% of FOLIO items are solved by exactly one paradigm, while the
+
+Chunk 5:
+-IT, Gemma-2-9B-IT, and Qwen- 2.5-7B-Instructour MoT consistently surpasses the CoT baseline on ProofWriter [ ] and FO- LIO [ ], with an average accuracy gain of up to +11.7pp. Step 5: given premises "If Thor is happy, the Hulk is angry." and "The Hulk wakes up when he is angry.", we can know "If Thor is happy, then Peter Parker is 
+
+Chunk 6:
+:... def wears_uniform( self):... class PeterParker: def __init__(self, angry):... def wakes_up(self):... def breaks_bridge( self):... class PeterParker: def __init__(self, angry):... def wears_uniform( self):... def wears_uniform( self):...
+
+Chunk 7:
+modalities (Sec. 2.2); and 3) our mixture-of-thought inference strategy that combines diverse but complementary reasoning paths to derive robust nal predictions (Sec. 2.3). Truth Table CoT: Challenges and Design. Two main challenges arise when enabling LLMs to reason with truth tables: 1) Exponential blow - up: the number of rows grows expo nentially with the propositional variables, easily exceeding the context window and compute budget; 2) First 
+
+Chunk 8:
+, and (ii) reason to prune, which eliminates rows that violate any premise through reasoning via LLMs, keeping partial truth table (see Table 1 and Appendix F.3). To address these challenges, we propose a two-step strategy: (i) order grounding, which instantiates rst - order formulas into a nite set of propositional predicates [, ], and (ii) reason to prune, which eliminates rows that violate any premise through
+
+Chunk 9:
+to elicit the reasoning modality t. To elicit the reasoning modality t, we design a small few-shot example set E t for each t, and prepend the exemplar from the set to each problem x i. A key challenge lies in the lack of annotated reasoning trajectories for each modality, especially for our newly introduced truth-table approach. To address this, we propose a self-evolving MoT training approach, which
+
+Chunk 10:
+D gen NL ; Code ; TruthTable g, Sampling times S, few-shot examples E = fE NL ; Code ; TruthTable g, Sampling times S, few-shot examples E = fE NL ; Code ; TruthTable g, Sampling times S, few-shot examples E = fE NL ; Code ; TruthTable g, Sampling times S, few-
+
+Chunk 11:
+(Line 17). To validate the effectiveness of our MoT, we select three widely-used LLMs across d ifferent sizes and model families: Qwen-2.5-7B-Instruct [ ] and Gemma-2-2B-It/Gemma-2-9B-It [ ] as base models. To validate the effectiveness of our MoT, we select three widely-used LLMs across d ifferent sizes and model families: Qwen-2.5-7B
+
+Chunk 12:
+-Thought Best (nl) 69.5 61.2 65.4 Gemma-2-9B-It @ 3 (3-shot) Single-Thought Best (nl) 72.9 65.0 63.8 (C) Base Model: Gemma-2-9B-It Gemma-2-9B-It @ 3 (3-shot) Single-Thought Best (nl) 72.9 62.7 67.8 MoT (0-shot) Single-Thought Best (nl) 72.9
+
+Chunk 13:
+76.9 69.5 73.2 MoT (0-shot) Mixture-of-Thought Best (nl) 71.9 60.5 66.2 Qwen2.5-7B-Instruct (3-shot) Single-Thought Best (nl) 73.4 65.8 69.6 MoT (0-shot) Mixture-of-Thought Best (nl) 71.9 60.5 66.2 Qwen2.5-7B-Instruct (3-shot) Single-Thought Best (nl
+
+Chunk 14:
+3.3 Mixture-of-Thought Training vs. Single-Thought Training In this section, we try to answer the key question: Does MoT training truly offer benets over Single-thought training? We have two baselines: 1) models trained on single-thought data and 2) models trained on partially MoT data, e.g., Code + NL. We evaluate both in - mode accuracy and cross - mode generalization. To enhance model's format following ability, we use 3
+
+Chunk 15:
+(MoT) MoT sampling outperforms the base model (Gemma-2-9b-It) with SoT sampling. (b) MoT sampling yields higher than SoT sampling (NL_CoT, Truth Table, Code) with SoT sampling. (b) MoT (MoT) MoT (MoT) MoT (MoT) MoT (MoT) MoT (MoT) MoT (MoT) vs. Sample Budget
+
+Chunk 16:
+. Figure 3 (a) shows our MoT model with MoT sampling consistently outperforms Gemma- 1-5 58 70 90 MoT benets more for deeper reasoning. Figure 3 (a) shows our MoT model with MoT sampling consistently outperforms Gemma- 1-5 58 70 90 MoT benets more for deeper reasoning. Figure 3 (a) shows our MoT model with MoT sampling consistently outperforms Gemma- 1-5 58 70 90 Mo
+
+Chunk 17:
+, indicating the largest potential of MoT trained models in test-time scaling. Figure 4 shows the performance of our MoT model (based on Gemma-2-9B-It) under three reasoning modalities in Figure 3 (b). Figure 4 shows the performance of our MoT model (based on Gemma-2-9B-It) with MoT inference achieves an accuracy of 73.0% on challenging logical tasks with reasoning depths ranging from 5 to 8, outperforming each modality by a
+
+Chunk 18:
+and oracle upper bound on ProofWriter and FOLIO. Figure 1(a),(b) shows each modality's solve rate and oracle up per bound on ProofWriter and FOLIO. Figure 1(a),(b) shows each modality's solve rate, i.e., examples solved by exactly one modality; 2) Complementarity coverage, i.e., examples solved by at least two modalities; and 3) Oracle upper bound 
+
+Chunk 19:
+to assess model rationales. Figure 1(c) presents the results, showing that invalid converse and missing-branch errors together account for nearly 66% of all errors. Figure 1(c) presents the results, showing that invalid converse and missing-branch errors together account for nearly 66% of all errors. Figure 1(c) presents the results, showing that invalid converse and missing-branch errors together account for nearly 66% of all errors. Figure 1(c) presents the results, showing that invalid
+
+Chunk 20:
+-level diversitytruth table, natural language, and code reasoningwhich better aligns with the structural requirements of symbolic tasks. In contrast, our work 1) explicitly denes three kinds of reasoning paradigms covering natural language, symbolic and code-based reaso ning. 2) goes beyond modality selection by jointly learning and inferring with all modalities, via a self-evolving MoT training and inference framework. Encouraging Diverse Thinking in Chain-of-Thought
+
+Chunk 21:
+based on the derived nal answer, then ne-tunes the model on these self-labeled examples to improve reasoning performance with minimal human supervision. Unlike previous work, our approach combines a self-evolving training process that fosters cross-paradigm synergy with an inference-time voting mechanism that aggregates complementary reasoning strategies. 6 Conclusion We presented Mixture-of-Thought (MoT), a unied framework for improving logical reasoning by
+
+Chunk 22:
+nsive experiments on two challenging logical reasoning benchmarks, FOLIO and ProofWriter, demonstrate that MoT substantially outperforms strong baselines, particularly on complex, high-depth problems.
+
+
+Cleaned Content (partial):
+Learning to Reason via Mixture-of-Thought for
+Logical Reasoning
+Tong Zheng
+1*
+, Lichang Chen
+1*
+, Simeng Han
+, R. Thomas McCoy
+, and Heng Huang
+*
+These authors contributed equally.
+Dept. of Computer Science, UMD, College Park, MD 20742
+Dept. of Computer Science, Yale University, New Haven, CT 06520
+Dept. of Linguistics, Yale University, New Haven, CT 06520
+Abstract
+Human beings naturally utilize multiple reasoning modalities to learn and solve log-
+ical problems,
+i.e.
+, different representational formats such as natural language, code,
+and symbolic logic. In contrast, most existing LLM-based approaches operate with
+a single reasoning modality during training, typically natural language. Although
+some methods explored modality selection or augmentation at inference time, the
+training process remains modality-blind, limiting synergy among modalities. To
+ll in this gap, we propose
+Mixture-of-Thought
+(MoT), a framework that enables
+LLMs to reason across three complementary modalities: natural language, code,
+and a newly introduced symbolic modality, truth-table, which systematically enu-
+merates logical cases and partially mitigates key failure modes in natural language
+reasoning. MoT adopts a two-phase design: (1)
+self-evolving MoT training
+, which
+jointly learns from ltered, self-generated rationales across modalities; and (2)
+MoT inference
+, which fully leverages the synergy of three modalities to produce
+better predictions. Experiments on logical reasoning benchmarks inclu ding FOLIO
+and ProofWriter demonstrate that our MoT framework consistently and signi-
+cantly outperforms strong LLM baselines with single-modality chain-of-thought
+approaches, achieving up to +11.7pp average accuracy gain. Further analyses
+show that our MoT framework benets both training and inference stages; that it
+is particularly effective on harder logical reasoning problems; and that different
+modalities contribute complementary strengths, with truth-table reasoning helping
+to overcome key bottlenecks in natural language inference. The training codes are
+publicly available on GitHub
+.
+1 Introduction
+Large language models (LLMs) have demonstrated remarkable progress in logical reasoning tasks,
+especially propelled by methods like Chain-of-Thought (CoT) prompting [
+]. However, these
+CoT approaches predominantly rely on single reasoning modality,
+i.e.
+, natural language, even
+when employing ensemble methods [
+,
+,
+,
+,
+,
+]. Here we refer to a
+modality
+as a distinct
+thought paradigm
+(
+e.g.
+natural language, symbolic, or code), which differs in representation and
+inference process. On the other hand, neuro-symbolic methods [
+,
+,
+] utilize LLMs as translators
+and delegate reasoning to external symbolic solvers. Recent work combines CoT with symbolic
+reasoning via either selecting a single modality per instance [
+] or augmenting one modality with the
+otherŠwhile keeping reasoning conned to symbolic [
+] or natural language [
+]. These methods
+2
+We use the terms thought paradigm and reasoning modality interchangeably.
+Preprint. Under review.
+
+FOLIO
+ProofWriter
+10
+30
+# Benchmark
+(a) Uniqueness Ratio
+Solve Rate (%)
+Code
+Truth Table
+NL CoT
+FOLIO
+ProofWriter
+70
+# Benchmark
+(b) Coverage Upper-Bound
+Solve Rate (%)
+Code
+[
+NL
+Code
+[
+NL
+[
+TT
+20
+IC
+MB
+FM
+CS
+:
+29
+:
+20
+:
+20
+:
+Percentage (%)
+(c) Error Distribution of NL mode
+Error Type
+(a) Qwen
+-
+2.5
+-
+7B
+-
+Instruct solves
+'
+20% of FOLIO and
+'
+35% of ProofWriter exclusively per paradigm.
+(b) Code+NL+truth
+-
+table yields higher upper
+-
+bound coverage than code+NL alone [
+]. (c) In NL modes,
+invalid
+-
+converse (IC) and missing
+-
+branch (MB) errors comprise
+'
+66% of failures (CS: commonsense injection;
+FM: factual misquote). Percentages sum to more than 100% because some cases exhibit multiple error types.
+We provide illustrative examples in Appendix G.1
+combine modalities only during inference and ignore the synergy of different modalities during
+training, thus failing to fully exploit the complementary strengths of different reasoning modalities.
+This limitation contrasts sharply with human cognition: Humans naturally employ multiple reasoning
+modalities, exibly switching among natural language explanations, code-based procedural thinking,
+and formal symbolic manipulation, both when learning complex logical skills and when solving novel
+problems [
+,
+,
+,
+]. This cognitive versatility, the ability to represent and process information
+in diverse formats, is crucial for robust reasoning and generalization. Current LLMs, largely conned
+to single-modality training and inference, lack this exibility. It raises a critical question:
+Can LLMs
+achieve more robust and versatile logical reasoning by explicitly learning to operate across multiple
+complementary reasoning modalities?
+Addressing this question requires tackling two challenges: 1) It is still unclear which reasoning
+modalities should be included; the selected modalities must be complementary to make joint learning
+worthwhile. 2) Equipping an LLM with multiple modalities is non-trivial, as large aligned reasoning
+trajectories are scarce. Our investigation reveals crucial insights for reasoning modality selection.
+Ł
+Natural language bottleneck.
+Figure 1 (c) shows that nearly two thirds of CoT errors arise from
+missing branches
+and
+invalid converse
+,
+i.e.
+, poor exhaustive enumeration and complex inference
+(See examples in Appendix G.1). Truth
+-
+table reasoning, which systematically lists all possibilities,
+naturally complements this weakness; therefore, we incorporate a symbolic truth-table paradigm.
+Ł
+CodeŒNL complementarity.
+Inspired by HybridMind [
+,
+], where they show preliminary
+results that a code paradigm could complement NL reasoning, we also incorporate code as one
+reasoning modality into our framework.
+Ł
+Paradigm overlap & uniqueness.
+Figure 1 (a-b) shows that 35.8% of ProofWriter items and
+16.7% of FOLIO items are solved by
+exactly one
+paradigm, while the union of three reasoning
+modalities covers up to 85% of all instancesŠevidence that combining NL, code, and truth-table
+reasoning is necessary, outperforming the simple combination of code and natural language .
+Building on these insights, we propose
+M
+ixture-
+o
+f-
+T
+hought (MoT), a human-inspired framework that
+enables LLMs to reason via three complementary reasoning modalities: natural language reasoning,
+code reasoning, and symbolic reasoning; an example is shown in table 1 to illustrate each modality. It
+is worth noticing that we introduce a new truth-table-based symbolic reasoning that systematically
+grounds propositional variables, constructs a partial truth table by pruning assignments that violate any
+premise, and infers the nal answer by checking whether the conclusion holds across the remaining
+assignments. Our MoT consists of two parts. One part is training: we propose a self-evolving MoT
+training algorithm, which improves the model's reasoning ability in each modality through joint
+iterative optimization (Figure 2 (a)). Another part is inference, where we generate responses under
+each modality and leverage a voting mechanism to produce the nal answer (Figure 2 (b)). This
+straightforward strategy allows the model to combine diverse perspectives and make more robust
+predictions, particularly in complicated instances.
+Empirically, we show that across three base modelsŠGemma-2-2B-IT, Gemma-2-9B-IT, and Qwen-
+2.5-7B-InstructŠour MoT consistently surpasses the CoT baseline on ProofWriter [
+] and FO-
+LIO [
+], with an average accuracy gain of up to
++11.7pp
+. Notably, our 9B
+-
+parameter MoT matches
+the results of GPT
+-
+4 + Logic
+-
+LM on FOLIO. Additional analyses show that 1) MoT training outper-
+forms single
+-
+thought training; 2) Mixture
+-
+of
+-
+Thought sampling yields a higher oracle upper bound
+Illustration of the three complementary reasoning modalities,
+i.e.
+, natural-language CoT, code-based
+reasoning, and truth-table reasoning. We provide the corresponding outputs of LLMs in appendix F.
+Premise:
+Peter Parker is either a superhero or a civilian. The Hulk wakes up when he is angry. If he wakes up, he will break a bridge. If a
+destroyer breaks a bridge, Peter is not a civilian. Peter wears a uniform when he is a superhero. Thor is a god. A god is not a destroyer. Thor will
+break a bridge when he is happy. If Thor is happy, the Hulk is angry.
+Question:
+If Thor is happy, does Peter Parker wear a uniform?
+Natural Language Reasoning Code-Based Reasoning (Abstract) Truth Table Reasoning
+<nl_cot>
+Step 1: given premises "If Thor is happy,
+the Hulk is angry." and "The Hulk wakes up
+when he is angry.", we can know "If Thor
+is happy, then hulk wakes up."
+...
+Step 5: given premise "Peter Parker is either
+a superhero or a civilian." and derivation
+"If Thor is happy, then Peter Parker is not
+a civilian", we can know "If Thor is happy,
+then Peter Parker is a superhero."
+Step 6: given premise "Peter Parker wears
+a uniform when he is a superhero." and
+derivation "If Thor is happy, then Peter
+Parker is a superhero.", we can know "If
+Thor is happy, then Peter Parker wears a
+uniform"
+<end_of_nl_cot>
+<answer>
+Answer: (A)
+<end_of_answer>
+<code>
+class Hulk:
+def __init__(self, angry): ...
+def wakes_up(self) : ...
+def breaks_bridge( self): ...
+class Thor:
+def __init__(self, happy): ...
+def breaks_bridge( self): ...
+class PeterParker :
+def __init__(self, is_superhero):
+...
+def wears_uniform( self): ...
+def apply_premise s(thor, hulk, peter):
+...
+def run_inference (thor, hulk, peter):
+...
+def check_conclus ion(...): ...
+thor = Thor( happy=True)
+hulk = Hulk( angry=False)
+peter = Pete rParker(...)
+result = che ck_conclusion(...)
+<end_of_code>
+<answer>
+Answer: (A)
+<end_of_answer>
+<truth_table>
+Let:
+T
+= Thor happy,
+H
+= Hulk angry,
+A
+=
+wakes up,
+B
+= bridge breaks,
+C
+= Peter is
+civilian,
+S
+= superhero,
+U
+= wears uniform.
+Premises:
+S
+_
+C
+,
+H
+!
+A
+,
+A
+!
+B
+,
+T
+!
+H
+,
+T
+!
+B
+,
+B
+! :
+C
+,
+S
+!
+U
+.
+Logical Chain (assume
+T
+=
+True):
+T
+)
+H
+)
+A
+)
+B
+B
+) :
+C
+)
+C
+=
+False
+S
+_
+C
+)
+S
+=
+True
+)
+U
+=
+True
+Truth Table:
+T H A B C S U
+True True 
